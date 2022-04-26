@@ -1,14 +1,26 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+import config
+import time
 
-driver_path = '/usr/bin/chromedriver'
-brave_path = '/snap/bin/brave'
+PATH = '/usr/bin/chromedriver'
+url = 'https://portal.insightglobal.com/Candidate/#!/timesheet/manage/4559609'
+username = config.username
+password = config.password
 
-options = Options()
+driver = webdriver.Chrome(PATH)
+driver.get(url)
 
-options.binary_location = brave_path
-options.add_argument('--remote-debugging-port=9224') #NOT 9222
+usr_name = driver.find_element_by_id('ctl00_cphMain_logIn_UserName')
+usr_name.send_keys(username)
 
-driver = webdriver.Chrome(options=options, executable_path=driver_path)
-driver.get('https://portal.insightglobal.com/Candidate/#!/timesheet/manage/4559609')
-driver.quit
+usr_pass = driver.find_element_by_id('ctl00_cphMain_logIn_Password')
+usr_pass.send_keys(password)
+
+log_in_btn = driver.find_element_by_id('ctl00_cphMain_logIn_Login')
+log_in_btn.send_keys(Keys.RETURN)
+
+time.sleep(5)
+
+driver.quit()
