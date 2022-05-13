@@ -4,12 +4,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from config import username, password
 import time
 
 PATH = '/usr/bin/chromedriver'
 url = 'https://portal.insightglobal.com/Candidate/#!/timesheet/manage/4559609'
-username = 'YOUR_USERNAME'
-password = 'YOUR_PASSWORD'
+username = username
+password = password
 job_title = 'HP Inc. - Data Analyst'
 clock_in = '7:30 AM'
 clock_out = '4:00 PM'
@@ -34,7 +35,7 @@ wait = WebDriverWait(driver, 30)
 wait.until(EC.element_to_be_clickable((By.XPATH, f"//tr[@class='rgRow']//td[2]/a[@title='{job_title}' and text()='{job_title}']"))).click()
 driver.switch_to.default_content()
 
-iframe_timesheet = driver.find_element_by_xpath("//*[@id='timesheet_manage_5067286']")
+iframe_timesheet = driver.find_element_by_xpath("/html/body/form/div[4]/div[2]/iframe[2]")
 driver.switch_to.frame(iframe_timesheet)
 
 def button_12():
