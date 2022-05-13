@@ -4,13 +4,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from config import username, password
+import config 
 import time
 
 PATH = '/usr/bin/chromedriver'
 url = 'https://portal.insightglobal.com/Candidate/#!/timesheet/manage/4559609'
-username = username
-password = password
+username = config.username
+password = config.password
 job_title = 'HP Inc. - Data Analyst'
 clock_in = '7:30 AM'
 clock_out = '4:00 PM'
